@@ -5,8 +5,8 @@ const ChatApp = () => {
   const [inputValue, setInputValue] = useState('');
   const messagesEndRef = useRef(null);
   const [userList, setUserList] = useState([]);
-  const [lastThreeUserLists, setLastThreeUserLists] = useState([]);
-  const [emojis, setEmojis] = useState(['😀', '😂', '😍', '👍', '❤️', '🎉']);
+  const [lastThreeUserLists, setLastThreeUserLists] = useState([]); // eslint-disable-line no-unused-vars
+  const [emojis, setEmojis] = useState(['😀', '😂', '😍', '👍', '❤️', '🎉']); // eslint-disable-line no-unused-vars
 
   useEffect(() => {
     generateRandomUserList();
