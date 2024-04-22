@@ -17,7 +17,7 @@ const ChatApp = () => {
   }, [messages]);
 
   const generateRandomUserList = () => {
-    const allUsers = ["Gautham", "Meghana", "Danny", "Harshi", "Rakesh", "Phani", "Gyani", "SK", "Jaggu Bhai", "Vinnie"];
+    const allUsers = ["Gautham", "Meghana", "Danny", "Harshi", "Rakesh", "Phani", "Gyani", "Mouli", "Jaggu Bhai", "Rupesh"];
     const shuffledUsers = shuffle(allUsers);
     const uniqueUsers = shuffledUsers.slice(0, 10);
     setUserList(uniqueUsers);
@@ -86,14 +86,31 @@ const ChatApp = () => {
   };
 
   const getUserLogo = (userName) => {
-    const initial = userName.charAt(0).toUpperCase();
+    const initials = userName.slice(0, 2).toUpperCase();
+    const colors = ['#3498db', '#e74c3c', '#2ecc71', '#f39c12', '#9b59b6', '#1abc9c', '#34495e', '#e67e22', '#95a5a6', '#c0392b'];
+    const colorIndex = Math.abs(hashCode(userName)) % colors.length;
+    const color = colors[colorIndex];
     return (
       <svg width="50" height="50" viewBox="0 0 50 50">
-        <circle cx="25" cy="25" r="25" fill="#3498db" />
-        <text x="50%" y="50%" textAnchor="middle" dominantBaseline="middle" fontSize="24" fill="#fff">{initial}</text>
+        <circle cx="25" cy="25" r="25" fill={color} />
+        <text x="50%" y="50%" textAnchor="middle" dominantBaseline="middle" fontSize="24" fill="#fff">{initials}</text>
       </svg>
     );
   };
+  
+  const hashCode = (str) => {
+    let hash = 0;
+    if (str.length === 0) {
+      return hash;
+    }
+    for (let i = 0; i < str.length; i++) {
+      const char = str.charCodeAt(i);
+      hash = ((hash << 5) - hash) + char;
+      hash &= hash;
+    }
+    return hash;
+  };
+  
 
   return (
     <div style={{ maxWidth: '100%', height: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: '#EDF1F5' }}>
